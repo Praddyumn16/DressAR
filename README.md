@@ -1,4 +1,4 @@
-# My E-Commerce App
+# DressAR
 
 This is a sample e-commerce application with AR/VR integration for trying out clothes.
 
