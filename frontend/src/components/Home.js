@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa'; 
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  const handleVirtualTryOn = (productId, productImage) => {
+    // Store the product image in local storage
+    localStorage.setItem('productImage', productImage);
+    navigate(`/virtual-try-on/${productId}`);
+  };
 
   useEffect(() => {
     const fetchImages = async () => {
-      const response = await fetch('https://api.unsplash.com/search/photos?query="men wearing a tshirt"&client_id=22sZ2rMNkQTs4gz80TASfXk_HFCsXzRzxEKxcFEZPD4&per_page=6');
+      const response = await fetch('https://api.unsplash.com/search/photos?query="model clothing"&client_id=22sZ2rMNkQTs4gz80TASfXk_HFCsXzRzxEKxcFEZPD4&per_page=6');
       const data = await response.json();
       const newProducts = data.results.map((img, index) => ({
         id: index + 1,
@@ -16,6 +23,7 @@ function Home() {
         price: '$' + ((index + 1) * 100),
         image: img.urls.small
       }));
+      
       setProducts(newProducts);
     };
   
@@ -38,8 +46,8 @@ function Home() {
                   <p>{product.description}</p>
                   <p>{product.price}</p>
                   <div style={{ display: 'flex', justifyContent: 'center', margin: '5px' }}>
-                    <button style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '0.375rem 0.75rem', borderRadius: '0.25rem', cursor: 'pointer', marginRight: '10px'}}>Virtual Try On</button>
-                    <button style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '0.375rem 0.75rem', borderRadius: '0.25rem', cursor: 'pointer', marginLeft: '10px' }}>Add to Cart</button>
+                  <button onClick={() => handleVirtualTryOn(product.id, product.image)} style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '0.375rem 0.75rem', borderRadius: '0.25rem', cursor: 'pointer', marginRight: '10px'}}>Virtual Try On</button>  
+                  <button style={{ backgroundColor: '#007bff', color: 'white', border: 'none', padding: '0.375rem 0.75rem', borderRadius: '0.25rem', cursor: 'pointer', marginLeft: '10px' }}>Add to Cart</button>
                   </div>
                 </div>
             </div>

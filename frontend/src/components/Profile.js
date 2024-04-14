@@ -46,8 +46,8 @@ const Profile = () => {
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={image || placeholderImage} alt="Profile" style={{ width: '400px', height: '400px', objectFit: 'cover' }} />
-          <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleImageUpload} />
+        <img src={image || placeholderImage} alt="Profile" style={{ width: '450px', height: '450px', objectFit: 'contain' }} />
+        <input type="file" style={{ display: 'none' }} ref={fileInputRef} onChange={handleImageUpload} />
           {isImageUploaded ? (
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '220px' }}>
               <button onClick={handleClick} style={{ margin: '10px 0' }}>Update Image</button>

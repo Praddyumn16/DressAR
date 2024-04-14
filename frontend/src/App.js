@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import VirtualTryOn from './components/VirtualTryOn';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/virtual-try-on/:productId" element={<VirtualTryOn />} />
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
